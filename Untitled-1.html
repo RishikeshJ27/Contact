@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contact Us</h1>
+      <form action="#" method="post" name="submit-to-google-sheet">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="Message" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxvnkrkCzThWf0RRBAJ_wakegpJojiJRbRRj78-KOGs2OFOvrjAVie32nkxBuHo4xBojQ/exec";
+      const form = document.forms["submit-to-google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
